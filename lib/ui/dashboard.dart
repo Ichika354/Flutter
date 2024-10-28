@@ -1,4 +1,6 @@
+import 'package:first_flutter/ui/faktur_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:first_flutter/data_dummy.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -20,86 +22,72 @@ class _DashboardPageState extends State<DashboardPage> {
           fontSize: 20, // Ukuran font teks
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(
-            top: 20.0, left: 20.0), // Menambahkan padding di atas
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical, // Tambahkan scroll vertikal
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal, // Tambahkan scroll horizontal
-            child: DataTable(
-              columns: const <DataColumn>[
-                DataColumn(
-                  label: Text(
-                    'No Faktur Penjualan',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                DataColumn(
-                  label: Text(
-                    'Tanggal Penjualan',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                DataColumn(
-                  label: Text(
-                    'Nama Customer',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                DataColumn(
-                  label: Text(
-                    'Jumlah Barang',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                DataColumn(
-                  label: Text(
-                    'Total Penjualan',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
-              rows: const <DataRow>[
-                DataRow(
-                  cells: <DataCell>[
-                    DataCell(Text('Faktur 001')),
-                    DataCell(Text('23/10/2024')),
-                    DataCell(Text('M Fachriza Farhan')),
-                    DataCell(Text('10')),
-                    DataCell(Text('100000')),
-                  ],
-                ),
-                DataRow(
-                  cells: <DataCell>[
-                    DataCell(Text('Faktur 002')),
-                    DataCell(Text('23/10/2024')),
-                    DataCell(Text('Muhammad Rafli Alfarisi')),
-                    DataCell(Text('5')),
-                    DataCell(Text('50000')),
-                  ],
-                ),
-                DataRow(
-                  cells: <DataCell>[
-                    DataCell(Text('Faktur 003')),
-                    DataCell(Text('24/10/2024')),
-                    DataCell(Text('Gaizka Wisnu Prawira')),
-                    DataCell(Text('3')),
-                    DataCell(Text('30000')),
-                  ],
-                ),
-                DataRow(
-                  cells: <DataCell>[
-                    DataCell(Text('Faktur 004')),
-                    DataCell(Text('24/10/2024')),
-                    DataCell(Text('Gading Khairlambang')),
-                    DataCell(Text('8')),
-                    DataCell(Text('80000')),
-                  ],
-                ),
-              ],
+      body: Column(
+        children: [
+          Expanded(
+              child: ListView.builder(
+            padding: const EdgeInsets.all(10),
+            itemCount: fakturData.length,
+            itemBuilder: (context, index) {
+              Map<String, String> data = fakturData[index];
+              return ItemProduk(
+                noFaktur: data['No Faktur Penjualan'],
+                tanggalPenjualan: data['Tanggal Penjualan'],
+                namaCustomer: data['Nama Customer'],
+                jumlahBarang: data['Jumlah Barang'],
+                totalPenjualan: data['Total Penjualan'],
+              );
+            },
+          ))
+        ],
+      ),
+    );
+  }
+}
+
+class ItemProduk extends StatelessWidget {
+  final String? noFaktur;
+  final String? tanggalPenjualan;
+  final String? namaCustomer;
+  final String? jumlahBarang;
+  final String? totalPenjualan;
+
+  const ItemProduk({
+    super.key,
+    this.noFaktur,
+    this.tanggalPenjualan,
+    this.namaCustomer,
+    this.jumlahBarang,
+    this.totalPenjualan,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // Navigasi ke halaman FakturDetail dengan mengirimkan data lengkap
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => FakturDetail(
+              noFaktur: noFaktur,
+              tanggalPenjualan: tanggalPenjualan,
+              namaCustomer: namaCustomer,
+              jumlahBarang: jumlahBarang,
+              totalPenjualan: totalPenjualan,
             ),
           ),
+        );
+      },
+      child: Card(
+        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+        child: ListTile(
+          title: Text(
+            'No Faktur: $noFaktur',
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text('Nama Customer: $namaCustomer'),
+          contentPadding: const EdgeInsets.all(16.0),
         ),
       ),
     );

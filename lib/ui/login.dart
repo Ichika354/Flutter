@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
           color: Colors.white, // Warna teks menjadi putih
           fontSize: 20, // Ukuran font teks
         ),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0), // Menambahkan padding di sekitar body

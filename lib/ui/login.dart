@@ -26,7 +26,8 @@ class _LoginPageState extends State<LoginPage> {
         automaticallyImplyLeading: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0), // Menambahkan padding di sekitar body
+        padding:
+            const EdgeInsets.all(20.0), // Menambahkan padding di sekitar body
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -64,16 +65,22 @@ class _LoginPageState extends State<LoginPage> {
         String username = _usernameController.text;
         String password = _passwordController.text;
 
-        // Validasi login bisa ditambahkan di sini
-        if (username.isNotEmpty && password.isNotEmpty) {
-          // Aksi login (misalnya, navigasi ke halaman utama)
+        // Validasi username dan password
+        if (username == "reza" && password == "admin") {
+          // Jika username dan password benar, navigasi ke halaman MenuPage
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const MenuPage(), // Ganti dengan halaman yang sesuai setelah login
+            builder: (context) => const MenuPage(),
           ));
-        } else {
-          // Tampilkan pesan kesalahan
+        } else if (username.isEmpty || password.isEmpty) {
+          // Jika salah satu field kosong, tampilkan pesan kesalahan
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Username dan Password tidak boleh kosong')),
+            const SnackBar(
+                content: Text('Username dan Password tidak boleh kosong')),
+          );
+        } else {
+          // Jika username atau password salah, tampilkan pesan kesalahan
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Username atau Password salah')),
           );
         }
       },

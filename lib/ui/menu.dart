@@ -19,6 +19,7 @@ class _MenuPageState extends State<MenuPage> {
       appBar: AppBar(
         backgroundColor: Colors.blue, // Navbar berwarna biru
         title: const Text('Management System'),
+        automaticallyImplyLeading: false,
         titleTextStyle: const TextStyle(
           color: Colors.white, // Warna teks menjadi putih
           fontSize: 20, // Ukuran font teks
@@ -26,7 +27,8 @@ class _MenuPageState extends State<MenuPage> {
       ),
       body: Center(
         child: Container(
-          padding: const EdgeInsets.all(20), // Menambahkan padding untuk memberi jarak dari tepi layar
+          padding: const EdgeInsets.all(
+              20), // Menambahkan padding untuk memberi jarak dari tepi layar
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, // Membagi menjadi 2 kolom
@@ -76,7 +78,8 @@ class _MenuPageState extends State<MenuPage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => items[index]['page']),
+                    MaterialPageRoute(
+                        builder: (context) => items[index]['page']),
                   );
                 }, // Fungsi yang akan dipanggil saat kotak diklik
                 child: Container(
@@ -87,13 +90,15 @@ class _MenuPageState extends State<MenuPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        items[index]['icon'], // Ikon yang berbeda untuk setiap kotak
+                        items[index]
+                            ['icon'], // Ikon yang berbeda untuk setiap kotak
                         color: items[index]['iconColor'], // Warna ikon
                         size: 50.0,
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        items[index]['label'], // Label yang berbeda untuk setiap kotak
+                        items[index]
+                            ['label'], // Label yang berbeda untuk setiap kotak
                         style: TextStyle(
                           color: items[index]['textColor'], // Warna teks hitam
                         ),
@@ -109,4 +114,3 @@ class _MenuPageState extends State<MenuPage> {
     );
   }
 }
-  

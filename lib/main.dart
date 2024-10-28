@@ -1,10 +1,10 @@
-import 'package:first_flutter/hello_word.dart';
+// import 'package:first_flutter/hello_word.dart';
 import 'package:first_flutter/ui/menu.dart';
-import 'package:first_flutter/ui/produk_detail.dart';
-import 'package:first_flutter/ui/produk_form.dart';
-import 'package:first_flutter/ui/produk_page.dart';
+// import 'package:first_flutter/ui/produk_detail.dart';
+// import 'package:first_flutter/ui/produk_form.dart';
+// import 'package:first_flutter/ui/produk_page.dart';
 import 'package:flutter/material.dart';
-import 'package:first_flutter/column_widget.dart';
+// import 'package:first_flutter/column_widget.dart';
 
 void main() {
   runApp(const MyApp());
